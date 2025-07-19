@@ -1,0 +1,17 @@
+
+<!doctype html>
+<html lang="fr" data-theme="lofi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dispatch Manager - {{ title }}</title>
+    <!-- vite_hmr_client --> <!-- vite_asset 'static/src/js/app.js' -->
+  </head>
+
+  <body
+    hx-headers='{"X-CSRFToken":"<!-- csrf_token -->"}'
+    class="flex overflow-hidden relative flex-col h-screen text-sm antialiased font-outfit"
+  >
+    {{ slot }}
+  </body>
+</html>

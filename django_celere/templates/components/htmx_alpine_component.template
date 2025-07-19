@@ -1,0 +1,14 @@
+<div hx-get="/your-htmx-endpoint/" hx-trigger="load" hx-swap="outerHTML">
+  Loading content...
+</div>
+
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('myComponent', () => ({
+      message: 'Hello from Alpine.js!',
+      init() {
+        console.log(this.message);
+      }
+    }));
+  });
+</script>

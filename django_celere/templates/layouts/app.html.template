@@ -1,0 +1,49 @@
+
+<c-layouts.base title="{{ title }}">
+  <!-- Drawer principal -->
+  <div class="overflow-hidden h-full drawer lg:drawer-open">
+    <input id="sidebar" type="checkbox" class="drawer-toggle" />
+
+    <div class="flex overflow-hidden flex-col h-full drawer-content">
+      <div class="flex overflow-hidden flex-col flex-1 p-2 lg:p-5 bg-base-200">
+        <main class="container flex relative flex-col mx-auto max-w-7xl h-full" id="main">
+          {{ slot }}
+        </main>
+      </div>
+    </div>
+    <!-- Sidebar -->
+    <div class="drawer-side z-[90] scrollbar-thin border-r border-base-300">
+      <label for="sidebar" class="drawer-overlay"></label>
+      <!-- Menu principal -->
+      <ul class="w-64 min-h-full menu z-[90] bg-base-100">
+        <!-- Logo en haut du drawer -->
+        <div class="flex flex-col justify-center items-center mb-4 select-none">
+          <h1 class="text-xl font-bold mt-3">TITRE</h1>
+        </div>
+
+        <div class="divider"></div>
+        <div class="my-auto">
+          <li>
+            <button
+              hx-get="<!-- url 'authentication:profile_details' -->"
+              @click="sidebar.close()"
+              hx-push-url="true"
+              hx-target="#main"
+              class="flex items-center py-2 group"
+            >
+              <div class="flex justify-center w-6">
+                <!-- heroicon_outline "user" class="group-hover:animate-bounce" size=20 -->
+              </div>
+              <span class="text-sm sidebar-item-text">Profile</span>
+            </button>
+          </li>
+          <li>
+            <a href="<!-- url 'authentication:logout' -->">
+              <!-- heroicon_outline "arrow-right-start-on-rectangle" size=20 --> Déconnexion
+            </a>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</c-layouts.base>

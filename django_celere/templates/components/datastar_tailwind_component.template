@@ -1,0 +1,17 @@
+<div data-controller="my-component" data-my-component-message="Hello from Datastar!">
+  <p data-my-component-target="text"></p>
+</div>
+
+<script type="module">
+  import { Controller } from 'datastar';
+
+  class MyComponent extends Controller {
+    static targets = ['text'];
+
+    connect() {
+      this.textTarget.textContent = this.data.get('message');
+    }
+  }
+
+  Datastar.register('my-component', MyComponent);
+</script>

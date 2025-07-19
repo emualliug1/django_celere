@@ -1,0 +1,61 @@
+# Répertoires
+BACKEND = backend
+FRONTEND = frontend
+
+# Commandes
+PYTHON = python3
+POETRY = poetry run
+MANAGE = $(POETRY) $(PYTHON) manage.py
+NPM = npm run
+CD = cd
+
+# ⚙️ Django backend
+migrate:
+	$(CD) $(BACKEND) && $(MANAGE) makemigrations
+	$(CD) $(BACKEND) && $(MANAGE) migrate
+
+run:
+	$(CD) $(BACKEND) && $(MANAGE) runserver
+
+superuser:
+	$(CD) $(BACKEND) && $(MANAGE) createsuperuser
+
+static:
+	$(CD) $(BACKEND) && $(MANAGE) collectstatic --noinput
+
+dumpdata:
+	$(CD) $(BACKEND) && $(PYTHON) -Xutf8 manage.py dumpdata --indent=2 --output=db.json
+
+loaddata:
+	$(CD) $(BACKEND) && $(PYTHON) -Xutf8 manage.py loaddata ../fixtures/data.json
+
+# 🧪 Lint et Format
+black:
+	$(CD) $(BACKEND) && $(POETRY) black .
+
+prettier:
+	$(CD) $(FRONTEND) && npx prettier . --write
+
+lint:
+	$(CD) $(BACKEND) && $(POETRY) ruff check
+
+format: black prettier
+
+# 🧾 Frontend dev server
+start:
+	$(CD) $(FRONTEND) && $(NPM) dev
+
+build:
+	$(CD) $(FRONTEND) && $(NPM) build
+
+# Lancer les conteneurs avec (re)build des images
+up:
+	docker-compose up --build
+
+# Rebuild propre sans cache
+rebuild:
+	docker-compose build --no-cache
+	docker-compose up
+
+# 📌 Cibles déclarées comme non-fichiers
+.PHONY: migrate run superuser static dumpdata loaddata black prettier format start build clean-pyc flake8

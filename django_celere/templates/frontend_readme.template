@@ -1,0 +1,48 @@
+# Frontend Application
+
+This directory contains the frontend application, built with Vite and integrated with Django.
+
+## Technologies Used
+
+- **Vite:** A fast build tool that provides a lightning-fast development experience.
+- **Tailwind CSS:** A utility-first CSS framework for rapidly building custom designs.
+- **(JS Library):** (Specify the JavaScript library chosen, e.g., HTMX, Alpine.js, DataStar.js)
+- **(Component Library):** (Specify the component library chosen, e.g., DaisyUI, Flowbite)
+
+## Development
+
+1.  **Install Dependencies:**
+    ```bash
+    npm install
+    ```
+2.  **Start Development Server:**
+    ```bash
+    npm run dev
+    ```
+    This will start the Vite development server, typically on `http://localhost:5173`.
+    The Django backend is configured to proxy requests to this server during development.
+
+## Build for Production
+
+To build the frontend for production:
+
+```bash
+npm run build
+```
+
+This will generate optimized static assets in the `dist` directory, which Django will then serve.
+
+## Configuration
+
+- `vite.config.js`: Main Vite configuration file.
+- `tailwind.config.js`: Tailwind CSS configuration.
+- `package.json`: Project dependencies and scripts.
+
+## Integration with Django
+
+The frontend is integrated with Django using `django-vite`. Key aspects:
+
+- **`settings.py`:** Configured to point to Vite's development server and production build output.
+- **`base.html`:** Includes Vite's client and entry point for development, and static files for production.
+
+For more details on `django-vite`, refer to its documentation.

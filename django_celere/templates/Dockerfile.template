@@ -1,0 +1,43 @@
+# Use the official Python image as the base image
+FROM python:3.11-slim-buster
+
+# Set environment variables
+ENV PYTHONUNBUFFERED 1
+ENV DJANGO_SETTINGS_MODULE config.settings.development # Point to development settings
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    nginx \
+    --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy poetry.lock and pyproject.toml to the working directory
+COPY poetry.lock pyproject.toml /app/
+
+# Install Poetry
+RUN pip install poetry
+
+# Install project dependencies
+RUN poetry install --no-root --no-dev
+
+# Copy the rest of the application code
+COPY . /app/
+
+# Collect static files
+RUN poetry run python backend/manage.py collectstatic --noinput
+
+# Configure Nginx
+COPY nginx/nginx.conf /etc/nginx/sites-available/default
+RUN ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+RUN rm /etc/nginx/sites-enabled/default.conf
+
+# Expose port 80 for Nginx
+EXPOSE 80
+
+# Start Gunicorn and Nginx
+CMD service nginx start && poetry run {server_command}

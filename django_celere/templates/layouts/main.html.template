@@ -1,0 +1,7 @@
+
+<section
+  id="section"
+  class="flex overflow-y-auto relative pb-15 sm:pb-0 flex-col flex-1 scrollbar-thin animate-fade animate-once animate-duration-500 animate-delay-500 animate-ease-in"
+>
+  {{ slot }}
+</section>

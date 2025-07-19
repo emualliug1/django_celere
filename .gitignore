@@ -1,0 +1,62 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+
+# Distribution / Build artifacts
+*.egg-info/
+build/
+dist/
+pip-wheel-metadata/
+
+# Environments
+.env
+.venv
+env/
+venv/
+*/venv/
+*/.venv/
+
+# Editors
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python specific
+.Python
+.coverage
+.tox/
+.mypy_cache/
+.ruff_cache/
+htmlcov/ # For coverage reports
+logs/    # General log directory
+
+# Poetry specific
+# poetry.lock is intentionally NOT ignored for reproducible builds.
+
+# Django specific
+*.log # Already covered by logs/ but good to keep for specific Django logs
+*.pot
+*.mo
+local_settings.py
+db.sqlite3 # Specific to SQLite, but good to keep
+media/
+
+# Node.js / Frontend specific
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+/frontend/dist/ # Build output for the generated frontend
+
+# Docker
+*.swp
+# .dockerignore is intentionally NOT ignored as it's part of the project's Docker setup.

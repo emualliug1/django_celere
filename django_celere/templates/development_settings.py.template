@@ -1,0 +1,11 @@
+from .base import *
+
+DEBUG = True
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+# Database for development
+DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'data/db.sqlite3'}}
+
+# Vite HMR
+VITE_DEV_MODE = True

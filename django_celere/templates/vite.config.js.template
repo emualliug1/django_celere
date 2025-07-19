@@ -1,0 +1,27 @@
+import { defineConfig } from 'vite'
+import { resolve } from 'path'
+import tailwindcss from '@tailwindcss/vite'
+
+
+export default defineConfig({
+  plugins: [tailwindcss()],
+  base: '/static/',
+  server: {
+    host: 'localhost',
+    port: 5173,
+    watch: {
+      usePolling: true
+    }
+  },
+  build: {
+    manifest: 'manifest.json',
+    outDir: resolve(__dirname, './static/dist'),
+    assetsDir: 'assets',
+    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        app: resolve(__dirname, './static/src/js/app.{js,ts}')
+      }
+    }
+  }
+})
