@@ -1,5 +1,5 @@
-<p align="center">
-  <img src="https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/raw/main/logo.png" alt="Celere Logo" width="200">
+<p>
+  <img src="https://github.com/emualliug1/django_celere/raw/main/logo.png" alt="Celere Logo" width="200">
 </p>
 
 # Celere ⚡
